@@ -1,0 +1,20 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div>
+    <%= form.label :name, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :commenter, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :comment, class:"col-sm-2 col-form-label" %>
+    <%= form.text_area :body, class:"form-control" %>
+  </div><br/>
+  
+  <div class="input-group mb-3">
+    <%= form.label :status, class:"input-group-text" %>
+    <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
+  </div><br/>
+
+  <div>
+    <%= form.submit class:"btn btn-outline-success" %>
+  </div>
+<% end %>

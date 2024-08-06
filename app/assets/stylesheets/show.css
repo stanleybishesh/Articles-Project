@@ -1,0 +1,17 @@
+.container {
+  padding: 30px 100px;
+}
+
+.container h1 {
+  text-align: center;
+}
+
+.container p {
+  padding: 20px 0px;
+}
+
+.editDelete {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

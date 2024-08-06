@@ -1,0 +1,25 @@
+<%= form_with model:article do |form| %>
+    <div>
+        <%= form.label :title, class:"col-sm-2 col-form-label" %><br/>
+        <%= form.text_field :title, class:"form-control" %>
+        <% article.errors.full_messages_for(:title).each do |message| %>
+            <div><%= message %></div>
+        <% end %> 
+    </div>
+
+    <div>
+        <%= form.label :body, class:"col-sm-2 col-form-label" %><br/>
+        <%= form.text_area :body, class:"form-control", "rows"=> 10 %>
+        <% article.errors.full_messages_for(:body).each do |message| %>
+            <div><%= message %></div>
+        <% end %> 
+    </div><br/>
+    <div class="input-group mb-3">
+        <%= form.label :status, class:"input-group-text" %><br/>
+        <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
+    </div>
+    <br/>
+    <div>
+        <%= form.submit class:"btn btn-outline-success" %><br/>
+    </div>
+<% end %>

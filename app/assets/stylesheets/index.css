@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 20px 100px;
+}
+
+.container h1 {
+  text-align: center;
+  line-height: 60px;
+}
+.container .image {
+  height: 40vh;
+}
