@@ -1,4 +1,4 @@
-<%= form_with model:article do |form| %>
+<%= form_with model: article do |form| %>
     <div>
         <%= form.label :title, class:"col-sm-2 col-form-label" %><br/>
         <%= form.text_field :title, class:"form-control" %>
@@ -14,6 +14,9 @@
             <div><%= message %></div>
         <% end %> 
     </div><br/>
+
+    <%= form.number_field :user_id, id: 'article.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%><br/>
+
     <div class="input-group mb-3">
         <%= form.label :status, class:"input-group-text" %><br/>
         <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>

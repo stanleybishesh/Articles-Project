@@ -2,7 +2,7 @@
     <div class="card mt-4 mb-4">
     <div class="card-body">
         <h5 class="card-title"><%= comment.commenter %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">5mins ago</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Article Id: <%= comment.article_id %></h6>
         <p class="card-text"><%= comment.body %></p>
         <%= link_to 'Delete Comment', [comment.article, comment],
             data:{
@@ -12,4 +12,3 @@
     </div>
     </div>
 <% end %>
-
