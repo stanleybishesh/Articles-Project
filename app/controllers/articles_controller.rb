@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
   
   def myArticles
-    @articles = Article.all
+    @articles = current_user.articles 
   end
 
   def new 
