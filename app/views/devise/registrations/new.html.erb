@@ -7,6 +7,15 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field form-group mt-4">
+        <%= f.label :organization %><br />
+        <select name="organization_id" class="form-control mt-2">
+          <% @organizations.each do |org|%>
+              <option value=<%= org.id %>><%= org.name %> </option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="field form-group mt-4">
         <%= f.label :email %><br />
         <%= f.email_field :email, class:"form-control mt-2", autofocus: true, autocomplete: "email" %>
       </div>

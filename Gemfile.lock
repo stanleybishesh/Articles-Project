@@ -72,6 +72,9 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -108,6 +111,7 @@ GEM
     erubi (1.13.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -158,6 +162,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    omniauth (2.1.2)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
     orm_adapter (0.5.0)
     parallel (1.25.1)
     parser (3.3.4.0)
@@ -170,6 +178,9 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.7)
+    rack-protection (4.0.0)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -210,8 +221,6 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    redis-client (0.22.2)
-      connection_pool
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
@@ -257,12 +266,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.0)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -327,6 +330,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  annotate
   bootsnap
   brakeman
   capybara
@@ -334,11 +338,11 @@ DEPENDENCIES
   devise (~> 4.9, >= 4.9.4)
   importmap-rails
   jbuilder
+  omniauth (~> 2.1)
   puma (>= 5.0)
   rails (~> 7.2.0.beta3)
   rubocop-rails-omakase
   selenium-webdriver
-  sidekiq
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails

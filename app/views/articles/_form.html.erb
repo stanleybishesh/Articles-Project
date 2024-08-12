@@ -13,9 +13,10 @@
         <% article.errors.full_messages_for(:body).each do |message| %>
             <div><%= message %></div>
         <% end %> 
-    </div><br/>
+    </div>
 
     <%= form.number_field :user_id, id: 'article.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%><br/>
+    <%= form.number_field :organization_id, id: 'article.organization_id', class:"form-control", placeholder:"Organization Id", value: @organization_id, type: :hidden %><br/>
 
     <div class="input-group mb-3">
         <%= form.label :status, class:"input-group-text" %><br/>
