@@ -6,33 +6,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    super do |resource|
-      @organizations = Organization.all
-    end
+    @organizations = Organization.all
+    super
   end
 
   # POST /resource
   def create
-    @user = User.new(signup_params)
-    @org = Organization.find(params[:organization_id])
-    if @org
-      User.transaction do
-        if @user.save
-          @membership = Membership.new(user_id: @user.id, organization_id: @org.id)
-          if @membership.save
-            redirect_to root_path, notice: 'Membership was successfully created.'
-          else
-            redirect_to new_user_registration_path, notice: 'Membership could not be created.'
-          end
-        else
-          redirect_to new_user_registration_path, notice: 'User could not be registered.'
-        end
-      end
-    else
-      redirect_to new_user_registration_path, notice: 'Organization not found !!.'
-    end
+     registration_service = ::Users::RegistrationService.new(params).execute
+     if registration_service.success?
+      redirect_to root_path, notice: 'Registration success'
+     else
+      redirect_to new_user_registration_path, notice: registration_service.errors
+     end
   end
-
+  
   # GET /resource/edit
   # def edit
   #   super
@@ -78,9 +65,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  private
-  def signup_params
-    params.require(:user).permit(:email,:password,:password_confirmation)
-  end
 end
