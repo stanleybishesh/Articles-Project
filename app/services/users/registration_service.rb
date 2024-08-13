@@ -36,7 +36,7 @@ module Users
         @errors = []
       end
 
-    rescue ActiveRecord::Rollback => err
+      rescue ActiveRecord::Rollback => err
       @success = false
       @errors << err.message
     end
@@ -48,5 +48,6 @@ module Users
     def signup_params
       params.require(:user).permit(:email,:password,:password_confirmation)
     end
+    
   end
 end

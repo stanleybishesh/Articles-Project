@@ -1,20 +1,8 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
-  def find_article_by_article_id
-    @article = Article.find(params[:article_id])
+  def find_org
+    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
+    @organization = Organization.find_by(id: @organization_id)
   end
-
-  def find_article_by_id
-    @article = Article.find(params[:id])
-  end
-
-  def article_comments
-    return @article.comments
-  end
-
-  def org_user_article
-    return @organization.users.find_by(id: current_user.id).articles
-  end
-
 end

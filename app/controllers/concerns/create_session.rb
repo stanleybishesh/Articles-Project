@@ -1,10 +1,10 @@
 module CreateSession
     def find_organization_by_org_id
-        return Organization.find_by(id: params[:organization_id])
+        Organization.find_by(id: params[:organization_id])
     end
 
     def find_org_user_by_email
-        return @org.users.find_by(email: params[:email])
+        @org.users.find_by(email: params[:email])
     end
 
     def signin_if_valid_user
