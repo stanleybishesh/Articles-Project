@@ -37,16 +37,17 @@ module Users
       end
 
       rescue ActiveRecord::Rollback => err
-        @success = false
-        @errors << err.message
-      end
-
-      def organization
-        @organization ||= Organization.find(params[:organization_id])
-      end
-
-      def signup_params
-        params.require(:user).permit(:email,:password,:password_confirmation)
-      end
+      @success = false
+      @errors << err.message
     end
+
+    def organization
+      @organization ||= Organization.find(params[:organization_id])
+    end
+
+    def signup_params
+      params.require(:user).permit(:email,:password,:password_confirmation)
+    end
+    
   end
+end

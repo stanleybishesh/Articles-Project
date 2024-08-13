@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
         redirect_to article_path(@article), status: :see_other
     end
 
-    private 
+    private
+
     def comment_params
         params.require(:comment).permit(:commenter, :body, :status)
     end
@@ -28,11 +29,12 @@ class CommentsController < ApplicationController
     end
 
     def delete_if_valid_user
-        if current_user.id == @article.user_id
-            @comment.destroy
-            flash[:notice] = "Comment deleted."
-        else
-            flash[:notice] = "You are not authorized to delete this comment."
-        end
+      if current_user.id == @article.user_id
+        @comment.destroy
+        flash[:notice] = "Comment deleted."
+      else
+        flash[:notice] = "You are not authorized to delete this comment."
+      end
     end
+    
 end
