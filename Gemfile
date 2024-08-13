@@ -56,3 +56,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "omniauth", "~> 2.1"
+
+gem 'annotate'

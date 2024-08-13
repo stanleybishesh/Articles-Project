@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'articles#index'
-  
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  }
+
+  root 'articles#home'
+    
   get 'articles/myArticles', to: 'articles#myArticles'
   get 'users/myArticles', to: 'articles#myArticles'
   get 'myArticles', to: 'articles#myArticles'
-  # resources :my_articles
+
   resources :articles do
     resources :comments
   end
