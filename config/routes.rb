@@ -4,11 +4,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
 
-  root 'articles#home'
+  root 'home#index'
     
-  get 'articles/myArticles', to: 'articles#myArticles'
-  get 'users/myArticles', to: 'articles#myArticles'
-  get 'myArticles', to: 'articles#myArticles'
+  resources :my_articles, only: :index
 
   resources :articles do
     resources :comments
