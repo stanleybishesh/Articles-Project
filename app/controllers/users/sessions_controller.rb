@@ -13,23 +13,23 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     # debugger
-    # super
-      @org = Organization.find_by(id: params[:organization_id])
-      @user = @org.users.find_by(email: params[:email])
-      if @org.nil?
-        redirect_to new_user_registration_path, notice: 'Organization not found.'
-      end
-  
-      if !@user
+    @org = Organization.find_by(id: params[:organization_id])
+    @user = @org.users.find_by(email: params[:email])
+    if @org.nil?
+      redirect_to new_user_session_path, notice: 'Organization not found.'
+    end
+    
+    if !@user
+      super do |resource|
         render :new, notice: 'User not found.'
-      else
-        # debugger
-        if !@user.valid_password?(params[:password])
-          redirect_to new_user_session_path, notice: "Wrong password !"
-        else
-          sign_in_and_redirect @user
-        end
       end
+    else
+      if !@user.valid_password?(params[:password])
+        redirect_to new_user_session_path, notice: "Wrong password !"
+      else
+        sign_in_and_redirect @user
+      end
+    end
   end
 end
   # DELETE /resource/sign_out

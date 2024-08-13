@@ -13,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    # super
     @user = User.new(signup_params)
     @org = Organization.find(params[:organization_id])
     if @org
@@ -23,14 +22,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
           if @membership.save
             redirect_to root_path, notice: 'Membership was successfully created.'
           else
-            redirect_to :new, notice: 'Membership could not be created.'
+            redirect_to new_user_registration_path, notice: 'Membership could not be created.'
           end
         else
-          redirect_to :new, notice: 'User could not be registered.'
+          redirect_to new_user_registration_path, notice: 'User could not be registered.'
         end
       end
     else
-      redirect_to :new, notice: 'Organization not saved.'
+      redirect_to new_user_registration_path, notice: 'Organization not found !!.'
     end
   end
 

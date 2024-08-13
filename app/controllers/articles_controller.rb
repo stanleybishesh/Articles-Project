@@ -1,20 +1,22 @@
 class ArticlesController < ApplicationController
-  # http_basic_authenticate_with name:'Bishesh',password:'bishesh123', except: [:index, :show]
   before_action :authenticate_user!, except: [:index, :show, :home]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  
+  before_action :find_org, only: [:index, :show, :new, :create]
+
+  def find_org
+    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
+    @organization = Organization.find_by(id: @organization_id)
+  end
+
   def home
   end
 
   def index
-    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
-    @organization = Organization.find_by(id: @organization_id)
-    @articles = @organization.articles.all
+    @articles = @organization.articles
   end
   
   def show
     @article = Article.find(params[:id])
-    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
   end
   
   def myArticles
@@ -22,16 +24,10 @@ class ArticlesController < ApplicationController
   end
   
   def new 
-    # @article = Article.new
-    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
-    @organization = Organization.find_by(id: @organization_id)
     @article = @organization.users.find_by(id: current_user.id).articles.build
   end
   
   def create
-    # @article = Article.new(article_params)
-    @organization_id = Membership.find_by(user_id: current_user.id).organization_id
-    @organization = Organization.find_by(id: @organization_id)
     @article = @organization.users.find_by(id: current_user.id).articles.build(article_params)
     if @article.save
       redirect_to @article

@@ -1,27 +1,29 @@
 <%= stylesheet_link_tag 'show.css' %>
 
-<h1><%= @article.title %></h1>
-<p><%= @article.body %></p>
+<div class="container">
+    <h1><%= @article.title %></h1>
+    <p><%= @article.body %></p>
 
-<% if @article.user_id == current_user.id %>
-    <div class="editDelete">
-        <%= link_to 'Edit Article', edit_article_path, class:"btn btn-outline-primary" %>
+    <% if @article.user_id == current_user.id %>
+        <div class="editDelete">
+            <%= link_to 'Edit Article', edit_article_path, class:"btn btn-outline-primary" %>
 
-        <%= link_to "Delete Article", article_path(@article), data:{
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure you want to delete?"
-        }, class:"btn btn-outline-danger" %>
+            <%= link_to "Delete Article", article_path(@article), data:{
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure you want to delete?"
+            }, class:"btn btn-outline-danger" %>
+        </div>
+    <% end %>
+
+    <div class="card mt-4 mb-4">
+    <div class="card-header text-center">
+        <h4>Comments</h4>
     </div>
-<% end %>
+    <div class="card-body">
+        <%= render @article.comments %>
+    </div>
+    </div>
 
-<div class="card mt-4 mb-4">
-<div class="card-header text-center">
-    <h4>Comments</h4>
+    <h5>Add a comment: </h5>
+    <%= render 'comments/form'%>
 </div>
-<div class="card-body">
-    <%= render @article.comments %>
-</div>
-</div>
-
-<h5>Add a comment: </h5>
-<%= render 'comments/form'%>

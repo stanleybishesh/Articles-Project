@@ -1,1 +1,16 @@
-<h1>This is home page of my articles project.</h1>
+<%= stylesheet_link_tag 'home.css' %>
+
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-8 align-self-end">
+                <h1 class="text-white font-weight-bold">Write Your Articles</h1>
+                <hr class="divider" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 mb-5">Welcome to my platform, where you can discover a wealth of insightful articles on a variety of topics. Whether you're looking to learn something new or share your own knowledge, our community is the perfect place to engage and connect. Post your articles, explore others' work, and be part of a thriving exchange of ideas.</p>
+                <%= link_to 'Login for More', new_user_session_path, class:'btn btn-primary btn-xl' %>
+            </div>
+        </div>
+    </div>
+</header>
