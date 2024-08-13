@@ -1,15 +1,16 @@
 class CommentsController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_article_by_article_id, only: [:create, :destroy]
 
     def create
+        find_article(params[:article_id])
         article_comments.create(comment_params)
         redirect_to article_path(@article)
     end
 
     def destroy
+        find_article(params[:article_id])
         @comment = article_comments.find(params[:id])
-        check_user
+        delete_if_valid_user
         redirect_to article_path(@article), status: :see_other
     end
 
@@ -18,7 +19,15 @@ class CommentsController < ApplicationController
         params.require(:comment).permit(:commenter, :body, :status)
     end
 
-    def check_user
+    def find_article(id)
+        @article = Article.find(id)
+    end
+
+    def article_comments
+        @article.comments
+    end
+
+    def delete_if_valid_user
         if current_user.id == @article.user_id
             @comment.destroy
             flash[:notice] = "Comment deleted."

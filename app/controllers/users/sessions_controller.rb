@@ -13,10 +13,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @org = find_organization_by_org_id()
-    @user = find_org_user_by_email()
-    validate_organization()
-    signin_if_valid_user()
+    @org = find_organization_by_org_id
+    @user = find_org_user_by_email
+    validate_organization
+    signin_if_valid_user
   end
 
   # DELETE /resource/sign_out
