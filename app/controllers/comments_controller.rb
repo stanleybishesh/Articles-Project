@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+    params.require(:comment).permit(:user_id, :commenter, :body, :status)
   end
 
   def find_article(id)
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   end
 
   def delete_if_valid_user
-    if current_user.id == @article.user_id
+    if (current_user.id == @article.user_id || current_user.id == @comment.user_id)
       @comment.destroy
       flash[:notice] = "Comment deleted."
     else
