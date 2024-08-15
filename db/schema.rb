@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_14_165011) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_15_100234) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,6 +74,30 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_165011) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "imageable_type", null: false
+    t.integer "imageable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.date "date_of_birth"
+    t.string "gender"
+    t.string "phone_number"
+    t.string "address"
+    t.string "country"
+    t.string "occupation"
+    t.string "github_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_profiles_on_organization_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

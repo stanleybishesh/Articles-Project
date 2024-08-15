@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'form.css' %>
+
+<%= form_with model: @profile, data: {turbo: false}, url: profile_index_path do |form| %>
+  <%= form.label :date_of_birth, class:"col-sm-2 col-form-label" %>
+  <%= form.date_field :date_of_birth, class:"form-control" %>
+
+  <%= form.label :gender, class:"col-sm-2 col-form-label" %><br/>
+  <div class=flex>
+    <div class="form-check">
+      <%= form.radio_button :gender, "Male", class:"form-check-input" %>
+      <%= form.label :gender_male, "Male", class:"form-check-label" %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :gender, "Female", class:"form-check-input" %>
+      <%= form.label :gender_female, "Female", class:"form-check-label" %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :gender, "Others", class:"form-check-input" %>
+      <%= form.label :gender_others, "Others", class:"form-check-label" %>
+    </div>
+  </div>
+
+  <%= form.label :phone_number, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :phone_number, class:"form-control" %>
+
+  <%= form.label :address, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :address, class:"form-control" %>
+
+  <%= form.label :country,class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :country, class:"form-control" %>
+
+  <%= form.label :occupation, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :occupation, class:"form-control" %>
+
+  <%= form.label :github_url, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :github_url, class:"form-control"%>
+
+  <%= form.number_field :user_id, id: 'profile.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%>
+  <%= form.number_field :organization_id, id: 'profile.organization_id', class:"form-control", placeholder:"Organization Id", value: @organization_id, type: :hidden %><br/>
+
+  <%= form.submit class:"btn btn-outline-success" %>
+<% end %>
