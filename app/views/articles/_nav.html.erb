@@ -40,7 +40,9 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       <% else %>
-        <h5> <%= current_user.name %> </h5>
+        <div class="d-flex justify-content-between">
+          <h4><%= current_user.name %> 
+        </div>
       <% end %>
     </div>
   </div>

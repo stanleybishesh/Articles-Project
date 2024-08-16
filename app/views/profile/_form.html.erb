@@ -1,24 +1,30 @@
 <%= stylesheet_link_tag 'form.css' %>
 
-<%= form_with model: @profile, data: {turbo: false}, url: profile_index_path do |form| %>
-  <%= form.label :date_of_birth, class:"col-sm-2 col-form-label" %>
-  <%= form.date_field :date_of_birth, class:"form-control" %>
+
+<%= form_with model: @profile, data: {turbo_method: :put} do |form| %>
+  <%= form.fields_for :photo do |photo_form| %>
+    <%= photo_form.label :profile_photo, class:"col-sm-2 col-form-label" %>
+    <%= photo_form.file_field :image, class:"form-control" %>
+  <% end %>
 
   <%= form.label :gender, class:"col-sm-2 col-form-label" %><br/>
   <div class=flex>
     <div class="form-check">
-      <%= form.radio_button :gender, "Male", class:"form-check-input" %>
-      <%= form.label :gender_male, "Male", class:"form-check-label" %>
+      <%= form.radio_button :gender, "Male", id: "gender_male", class: "form-check-input" %>
+      <%= form.label :gender_male, "Male", for: "gender_male", class: "form-check-label" %>
     </div>
     <div class="form-check">
-      <%= form.radio_button :gender, "Female", class:"form-check-input" %>
-      <%= form.label :gender_female, "Female", class:"form-check-label" %>
+      <%= form.radio_button :gender, "Female", id: "gender_female", class: "form-check-input" %>
+      <%= form.label :gender_female, "Female", for: "gender_female", class: "form-check-label" %>
     </div>
     <div class="form-check">
-      <%= form.radio_button :gender, "Others", class:"form-check-input" %>
-      <%= form.label :gender_others, "Others", class:"form-check-label" %>
+      <%= form.radio_button :gender, "Others", id: "gender_others", class: "form-check-input" %>
+      <%= form.label :gender_others, "Others", for: "gender_others", class: "form-check-label" %>
     </div>
   </div>
+  
+  <%= form.label :date_of_birth, class:"col-sm-2 col-form-label" %>
+  <%= form.date_field :date_of_birth, class:"form-control" %>
 
   <%= form.label :phone_number, class:"col-sm-2 col-form-label" %>
   <%= form.text_field :phone_number, class:"form-control" %>
