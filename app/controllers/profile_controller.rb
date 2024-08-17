@@ -15,7 +15,7 @@ class ProfileController < ApplicationController
 
   def new
     @profile = @organization.users.find_by(id:current_user.id).build_profile
-    @profile.build_photo # Ensures the photo association is built
+    @profile.build_photo
   end
 
   def create

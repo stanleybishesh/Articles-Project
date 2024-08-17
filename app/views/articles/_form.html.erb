@@ -1,4 +1,9 @@
 <%= form_with model: article do |form| %>
+    <%= form.fields_for :photo do |photo_form| %>
+        <%= photo_form.label :article_photo, class:"col-sm-2 col-form-label" %>
+        <%= photo_form.file_field :image, class:"form-control mb-2" %>
+    <% end %>
+
     <div>
         <%= form.label :title, class:"col-sm-2 col-form-label" %><br/>
         <%= form.text_field :title, class:"form-control" %>

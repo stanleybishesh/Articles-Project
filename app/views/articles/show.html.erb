@@ -2,6 +2,11 @@
 
 <div class="container">
     <h1><%= @article.title %></h1>
+    <% if @article.photo.present? %>
+        <% if @article.photo&.image.attached? %>
+            <%= image_tag url_for(@article.photo.image), class:"article-photo" %>
+        <% end %>
+    <% end %>
     <p><%= @article.body %></p>
     <div style="float:left">- <%= @article.name %></div><br/>
     <% if @article.user_id == current_user.id %>
