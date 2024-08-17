@@ -5,6 +5,9 @@ class ProfileController < ApplicationController
 
   def index
     @profile = @organization.users.find_by(id:current_user.id).profile
+    if @profile.nil?
+      redirect_to new_profile_path
+    end
   end
   
   def show
@@ -28,9 +31,7 @@ class ProfileController < ApplicationController
   end
   
   def update
-
     if @profile.update(profile_params)
-
       redirect_to root_path, notice: "User Profile Successfully Updated !", status: :ok
     else
       render :edit, notice: "Profile Update Failed !", status: :unprocessable_entity
@@ -42,7 +43,7 @@ class ProfileController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:date_of_birth,:gender,:phone_number,:address,:country,:occupation,:github_url,:user_id, :organization_id, photo_attributes: [:image])
+    params.require(:profile).permit(:date_of_birth,:gender,:phone_number,:address,:country,:occupation,:github_url,:user_id, :organization_id, :facebook_url, :linkedin_url, :instagram_url, :twitter_url, photo_attributes: [:image])
   end
 
   def find_profile

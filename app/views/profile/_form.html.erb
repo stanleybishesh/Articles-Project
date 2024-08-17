@@ -1,10 +1,9 @@
 <%= stylesheet_link_tag 'form.css' %>
 
-
-<%= form_with model: @profile, data: {turbo_method: :put} do |form| %>
+<%= form_with model: @profile, url: @profile.new_record? ? profile_index_path : profile_path(@profile), method: @profile.new_record? ? :post : :patch, data: { turbo: false } do |form| %>
   <%= form.fields_for :photo do |photo_form| %>
     <%= photo_form.label :profile_photo, class:"col-sm-2 col-form-label" %>
-    <%= photo_form.file_field :image, class:"form-control" %>
+    <%= photo_form.file_field :image, class:"form-control mb-2" %>
   <% end %>
 
   <%= form.label :gender, class:"col-sm-2 col-form-label" %><br/>
@@ -24,25 +23,37 @@
   </div>
   
   <%= form.label :date_of_birth, class:"col-sm-2 col-form-label" %>
-  <%= form.date_field :date_of_birth, class:"form-control" %>
+  <%= form.date_field :date_of_birth, class:"form-control mb-2" %>
 
   <%= form.label :phone_number, class:"col-sm-2 col-form-label" %>
-  <%= form.text_field :phone_number, class:"form-control" %>
+  <%= form.text_field :phone_number, class:"form-control mb-2" %>
 
   <%= form.label :address, class:"col-sm-2 col-form-label" %>
-  <%= form.text_field :address, class:"form-control" %>
+  <%= form.text_field :address, class:"form-control mb-2" %>
 
   <%= form.label :country,class:"col-sm-2 col-form-label" %>
-  <%= form.text_field :country, class:"form-control" %>
+  <%= form.text_field :country, class:"form-control mb-2" %>
 
   <%= form.label :occupation, class:"col-sm-2 col-form-label" %>
-  <%= form.text_field :occupation, class:"form-control" %>
+  <%= form.text_field :occupation, class:"form-control mb-2" %>
+
+  <%= form.label :facebook_url, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :facebook_url, class:"form-control mb-2"%>
+
+  <%= form.label :instagram_url, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :instagram_url, class:"form-control mb-2"%>
+
+  <%= form.label :linkedin_url, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :linkedin_url, class:"form-control mb-2"%>
+
+  <%= form.label :twitter_url, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :twitter_url, class:"form-control mb-2"%>
 
   <%= form.label :github_url, class:"col-sm-2 col-form-label" %>
-  <%= form.text_field :github_url, class:"form-control"%>
+  <%= form.text_field :github_url, class:"form-control mb-2"%>
 
-  <%= form.number_field :user_id, id: 'profile.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%>
-  <%= form.number_field :organization_id, id: 'profile.organization_id', class:"form-control", placeholder:"Organization Id", value: @organization_id, type: :hidden %><br/>
+  <%= form.number_field :user_id, id: 'profile.user_id', class:"form-control mb-2", placeholder:"User Id", value: current_user.id, type: :hidden%>
+  <%= form.number_field :organization_id, id: 'profile.organization_id', class:"form-control mb-2", placeholder:"Organization Id", value: @organization_id, type: :hidden %><br/>
 
   <%= form.submit class:"btn btn-outline-success" %>
 <% end %>
