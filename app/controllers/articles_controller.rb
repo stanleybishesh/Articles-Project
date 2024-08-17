@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   
   def new 
     @article = org_user_article.build
+    @article.build_photo # Ensures the photo association is built
   end
   
   def create
@@ -46,7 +47,7 @@ class ArticlesController < ApplicationController
   private
   
   def article_params
-    params.require(:article).permit(:title, :body, :status, :user_id, :organization_id)
+    params.require(:article).permit(:title, :body, :status, :user_id, :organization_id, :name, photo_attributes: [:image])
   end
 
   def valid_user?

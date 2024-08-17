@@ -1,4 +1,9 @@
 <%= form_with model: article do |form| %>
+    <%= form.fields_for :photo do |photo_form| %>
+        <%= photo_form.label :article_photo, class:"col-sm-2 col-form-label" %>
+        <%= photo_form.file_field :image, class:"form-control mb-2" %>
+    <% end %>
+
     <div>
         <%= form.label :title, class:"col-sm-2 col-form-label" %><br/>
         <%= form.text_field :title, class:"form-control" %>
@@ -15,7 +20,8 @@
         <% end %> 
     </div>
 
-    <%= form.number_field :user_id, id: 'article.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%><br/>
+    <%= form.text_field :name, id: 'name', class:"form-control", placeholder:"User's Name", value: current_user.name, type: :hidden%>
+    <%= form.number_field :user_id, id: 'article.user_id', class:"form-control", placeholder:"User Id", value: current_user.id, type: :hidden%>
     <%= form.number_field :organization_id, id: 'article.organization_id', class:"form-control", placeholder:"Organization Id", value: @organization_id, type: :hidden %><br/>
 
     <div class="input-group mb-3">

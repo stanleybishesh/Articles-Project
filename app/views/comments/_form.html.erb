@@ -1,12 +1,13 @@
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
   <div>
-    <%= form.label :name, class:"col-sm-2 col-form-label" %>
-    <%= form.text_field :commenter, class:"form-control" %>
+    <%= form.number_field :user_id, class:"form-control", value: current_user.id, placeholder: "User's id", type: :hidden %>
+  </div>
+  <div>
+    <%= form.text_field :commenter, class:"form-control", value: current_user.name, placeholder: "Commenter's name", type: :hidden %>
   </div>
 
   <div>
-    <%= form.label :comment, class:"col-sm-2 col-form-label" %>
-    <%= form.text_area :body, class:"form-control" %>
+    <%= form.text_area :body, class:"form-control", placeholder: "Write your comment..... ", "rows" => 5 %>
   </div><br/>
   
   <div class="input-group mb-3">
