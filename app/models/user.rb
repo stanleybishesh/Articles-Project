@@ -11,4 +11,17 @@ class User < ApplicationRecord
 
   has_many :organizations, through: :memberships
 
+  def self.to_csv
+    attributes = %w{Name Email Organization}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      User.includes(:organizations).find_each do |user|
+        user.organizations.each do |organization|
+          csv << [user.name, user.email, organization.name]
+        end
+      end
+    end
+  end
+
 end

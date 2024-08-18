@@ -4,9 +4,9 @@ class ProfileController < ApplicationController
   before_action :find_profile, only: [:show, :edit, :update]
 
   def index
-    @profile = @organization.users.find_by(id:current_user.id).profile
+    @profile = org_current_user.profile
     if @profile.nil?
-      redirect_to new_profile_path
+      redirect_to new_profile_pathg In
     end
   end
   
@@ -14,12 +14,12 @@ class ProfileController < ApplicationController
   end
 
   def new
-    @profile = @organization.users.find_by(id:current_user.id).build_profile
+    @profile = org_current_user.build_profile
     @profile.build_photo
   end
 
   def create
-    @profile = @organization.users.find_by(id:current_user.id).build_profile(profile_params)
+    @profile = org_current_user.build_profile(profile_params)
     if @profile.save
       redirect_to root_path, notice:"User Profile Successfully Created !", status: :created
     else
@@ -48,5 +48,9 @@ class ProfileController < ApplicationController
 
   def find_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def org_current_user
+    @organization.users.find_by(id:current_user.id)
   end
 end

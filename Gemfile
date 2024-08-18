@@ -71,3 +71,5 @@ gem "google-cloud-storage", "~> 1.11", require: false
 
 gem "graphql", "~> 2.3"
 gem "graphiql-rails", group: :development
+
+gem "csv", "~> 3.3"
