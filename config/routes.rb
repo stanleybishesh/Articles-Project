@@ -8,9 +8,15 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
   }
-
+  
   root 'home#index'
   
+  resources :users do
+    collection do
+      post :import
+    end
+  end
+
   resources :profile
     
   resources :my_articles, only: :index

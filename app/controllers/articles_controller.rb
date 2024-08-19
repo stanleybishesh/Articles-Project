@@ -2,13 +2,13 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :valid_user?, only: [:edit, :update, :destroy]
   before_action :find_org, only: [:index, :show, :edit, :new, :create]
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   def index
     @articles = @organization.articles
   end
   
   def show
-    find_article(params[:id])
   end
   
   def new 
@@ -26,11 +26,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    find_article(params[:id])
   end
 
   def update
-    find_article(params[:id])
     if @article.update(article_params)
       redirect_to @article
     else
@@ -39,7 +37,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    find_article(params[:id])
     @article.destroy
     redirect_to articles_path, status: :see_other
   end
@@ -59,8 +56,8 @@ class ArticlesController < ApplicationController
     @organization.users.find_by(id: current_user.id).articles
   end
 
-  def find_article(id)
-    @article = Article.find(id)
+  def find_article
+    @article = Article.find(params[:id])
   end
   
 end

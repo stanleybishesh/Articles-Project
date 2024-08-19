@@ -31,6 +31,7 @@ module Users
         if organization.present?
           user.save!
           Membership.create!(user_id: user.id, organization_id: organization.id)
+          UserMailer.hello_email(user).deliver_now
         end
         @success = true
         @errors = []

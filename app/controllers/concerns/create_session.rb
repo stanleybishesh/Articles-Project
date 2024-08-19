@@ -9,14 +9,13 @@ module CreateSession
 
     def signin_if_valid_user
         if !@user
-            super do |resource|
-                render :new, notice: 'User not found.'
-            end
+            render :new, notice: 'User not found.'
+            super
         else
             if !@user.valid_password?(params[:password])
                 redirect_to new_user_session_path, notice: "Wrong password !"
             else
-                sign_in_and_redirect @user
+                sign_in_and_redirect @user, notice: "Logged In Successfully"
             end
         end
     end
