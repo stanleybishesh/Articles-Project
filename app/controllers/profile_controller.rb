@@ -6,7 +6,7 @@ class ProfileController < ApplicationController
   def index
     @profile = org_current_user.profile
     if @profile.nil?
-      redirect_to new_profile_pathg In
+      redirect_to new_profile_path
     end
   end
   
