@@ -36,7 +36,6 @@ module Users
         @success = true
         @errors = []
       end
-
       rescue ActiveRecord::Rollback => err
       @success = false
       @errors << err.message

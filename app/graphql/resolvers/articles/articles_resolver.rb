@@ -12,5 +12,5 @@ module Resolvers
                 end
             end
         end
-        end
+    end
 end
