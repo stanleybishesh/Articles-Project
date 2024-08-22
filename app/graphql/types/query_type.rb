@@ -3,8 +3,10 @@
 module Types
   class QueryType < Types::BaseObject
     field :articles, resolver: Resolvers::Articles::ArticlesResolver
-    field :user, resolver: Resolvers::Users::UsersResolver
-    field :comments, resolver: Resolvers::Comments::CommentsResolver
+    field :my_articles, resolver: Resolvers::Articles::MyArticlesResolver
+    field :users, resolver: Resolvers::Users::UsersResolver
+    field :commentsByUserId, resolver: Resolvers::Comments::CommentsByUserId
+    field :commentsByArticleId, resolver: Resolvers::Comments::CommentsByArticleId
     field :organizations, resolver: Resolvers::Organizations::OrganizationsResolver
     field :profiles, resolver: Resolvers::Profiles::ProfilesResolver
     field :profileByOrgAndUserName, resolver: Resolvers::Profiles::GetProfileResolver

@@ -1,7 +1,7 @@
 module Resolvers
   module Comments
-    class CommentsResolver < BaseResolver
-      type [Types::Comments::CommentType], null:false
+    class CommentsByUserId < BaseResolver
+      type [Types::Comments::CommentType], null:true
       argument :user_id, ID, required: true
 
       def resolve(user_id:)

@@ -10,6 +10,7 @@ module Types
       field :user_id, ID, null:false
       field :organization_id, ID, null:false
       field :user, Types::Users::UserType, null: false
+      field :organization, Types::Organizations::OrganizationType, null: false
     end
   end
 end

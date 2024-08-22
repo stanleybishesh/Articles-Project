@@ -12,8 +12,10 @@ class Mutations::Articles::CreateArticle < Mutations::BaseMutation
 
   def resolve(body:, user_id:, title:, organization_id:, status:, name:)
     user = User.find_by(id: user_id)
+    organization = Organization.find(organization_id)
+    raise GraphQL::ExecutionError, "Organization not found with given ID" if organization.nil?
     if user.present?
-        article = user.articles.create(title: title, body: body, organization_id: organization_id, status: status, name: name)
+        article = organization.users.find(user_id).articles.create(title: title, body: body, organization_id: organization_id, status: status, name: name)
         if article.valid?
             {
                 article: article,
