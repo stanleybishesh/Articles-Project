@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_17_152955) do
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
-    t.text "metadata"
+    t.text "metadata"``
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"

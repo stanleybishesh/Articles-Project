@@ -7,5 +7,6 @@ module Types
    field :create_organization, mutation: Mutations::Organizations::CreateOrganization
    field :create_comment, mutation: Mutations::Comments::CreateComment
    field :create_profile, mutation: Mutations::Profiles::CreateProfile
+   field :create_direct_upload, mutation: Mutations::CreateDirectUpload
   end
 end
