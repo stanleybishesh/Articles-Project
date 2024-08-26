@@ -23,6 +23,10 @@ module Users
       @errors.join(', ')
     end
 
+    def self.user
+      @user || nil
+    end
+
     private
 
     def handle_registration
@@ -36,18 +40,18 @@ module Users
         @success = true
         @errors = []
       end
-
       rescue ActiveRecord::Rollback => err
       @success = false
       @errors << err.message
     end
 
-    def organization
-      @organization ||= Organization.find(params[:organization_id])
-    end
-
     def signup_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
+      # ActiveController::Parameters.new(params).permit(:name,:email,:password,:password_confirmation)
+    end
+
+    def organization
+      @organization ||= Organization.find(params[:organization_id])
     end
     
   end
