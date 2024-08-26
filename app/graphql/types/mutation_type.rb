@@ -14,5 +14,11 @@ module Types
    field :edit_organization, mutation: Mutations::Organizations::EditOrganization
    field :edit_user, mutation: Mutations::Users::EditUser
    field :edit_profile, mutation: Mutations::Profiles::EditProfile
+
+   field :destroy_article, mutation: Mutations::Articles::DestroyArticle
+   field :destroy_comment, mutation: Mutations::Comments::DestroyComment
+   field :destroy_organization, mutation: Mutations::Organizations::DestroyOrganization
+   field :destory_user, mutation: Mutations::Users::DestroyUser
+   field :destory_profile, mutation: Mutations::Profiles::DestroyProfile
   end
 end
