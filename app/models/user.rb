@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
@@ -21,6 +24,7 @@ class User < ApplicationRecord
           csv << [user.name, user.email, organization.name]
         end
       end
+
     end
   end
 
