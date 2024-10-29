@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'articles#index'
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  }
   
-  get 'articles/myArticles', to: 'articles#myArticles'
-  get 'users/myArticles', to: 'articles#myArticles'
-  get 'myArticles', to: 'articles#myArticles'
-  # resources :my_articles
+  root 'home#index'
+  
+  resources :users do
+    collection do
+      post :import
+    end
+  end
+
+  resources :profile
+    
+  resources :my_articles, only: :index
+
   resources :articles do
     resources :comments
   end

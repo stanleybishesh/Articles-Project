@@ -1,12 +1,18 @@
 <%= stylesheet_link_tag 'index.css' %>
 
 <div class="container">
-    <h1>List of Articles</h1>
-    <% @my_articles.each do |article| %>
+    <h1>My Articles</h1>
+    <% @articles.each do |article| %>
         <% unless article.archived? %>
 
             <div class="card mb-3">
-                <%= image_tag 'blank.jpg', class:"image" %>
+                <% if article.photo.present? %>
+                    <% if article.photo&.image.attached? %>
+                        <%= image_tag url_for(article.photo.image), class:"article-photo" %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag 'default_article.png', class:"article-photo" %>
+                <% end %>
                 <div class="card-body">
                     <h5 class="card-title"><%= article.title %></h5>
                     <p class="card-text"><%= article.body %></p>

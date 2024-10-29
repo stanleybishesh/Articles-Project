@@ -1,0 +1,7 @@
+#config/sidekiq.yml
+
+:scheduler:
+  :schduler:
+    mailing_job:
+      cron: "0 * * * * *"
+      class: "MailingJob"

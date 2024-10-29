@@ -11,13 +11,19 @@
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'My Articles', "myArticles", class:"nav-link" %>
+            <%= link_to 'Articles', 'articles#index', class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My Articles', "my_articles", class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Add Article', new_article_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Edit Profile', edit_user_registration_path, class:"nav-link" %>
+            <%= link_to 'Edit Account', edit_user_registration_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Profile', profile_index_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"nav-link" %>
@@ -31,10 +37,16 @@
           </li>
         <% end %>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <% if !user_signed_in? %>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      <% else %>
+        <div class="d-flex justify-content-between">
+          <h4><%= current_user.name %> 
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>

@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Organization.create(name:"Alumni Ventures")
+# Organization.create(name:"Base Ventures")
+# Organization.create(name:"Brad Flora")
+# Organization.create(name:"David Hauser")

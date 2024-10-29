@@ -1,5 +1,8 @@
 class MyArticlesController < ApplicationController
-    def index
-        @my_articles = current_user.articles
-    end
+  before_action :authenticate_user!
+
+  def index
+    @articles = current_user.articles
+  end
+  
 end

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.0.beta3"
+gem 'rails', '~> 7.2'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
@@ -20,6 +20,8 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem 'devise', '~> 4.9', '>= 4.9.4'
 
+gem 'sidekiq', '~> 7.1', '>= 7.1.2'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -33,7 +35,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -44,6 +46,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.4'
 end
 
 group :development do
@@ -56,3 +60,22 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "omniauth", "~> 2.1"
+
+gem 'annotate'
+
+gem "aws-sdk-s3", require: false
+
+gem "azure-storage-blob", "~> 2.0", require: false
+
+gem "google-cloud-storage", "~> 1.11", require: false
+
+gem "graphql", "~> 2.3"
+gem "graphiql-rails", group: :development
+
+gem "csv", "~> 3.3"
+gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
+gem "dotenv", "~> 3.1"
+gem "redis", ">= 4.0.1"
+gem "pg", "~> 1.5"

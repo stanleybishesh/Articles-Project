@@ -2,13 +2,15 @@
     <div class="card mt-4 mb-4">
     <div class="card-body">
         <h5 class="card-title"><%= comment.commenter %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Article Id: <%= comment.article_id %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">User ID: <%= comment.user_id %></h6>
         <p class="card-text"><%= comment.body %></p>
-        <%= link_to 'Delete Comment', [comment.article, comment],
-            data:{
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure you want to delete this comment?"
-            },class:"btn btn-outline-danger" %>
+        <% if (current_user.id == @article.user_id || current_user.id == comment.user_id) %>
+            <%= link_to 'Delete Comment', [comment.article, comment],
+                data:{
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure you want to delete this comment?"
+                },class:"btn btn-outline-danger" %>
+        <% end %>
     </div>
     </div>
 <% end %>
